@@ -13,3 +13,150 @@ body {
 #app {
   min-height: 100vh;
 }
+/* ======================================================= */
+/* 💡 CSS Animated Background Styles (Updated for Hover & Reverse Motion) */
+/* ======================================================= */
+
+
+/* 1. الإعدادات العامة للمجموعتين */
+.css-animation-bg, .css-animation-bg-alt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles, .circles-alt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* 2. المجموعة الأولى: الحركة للأعلى (مربعات) */
+
+.circles li {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.1); /* Light Mode Color */
+    animation: animate 25s linear infinite;
+    bottom: -150px; /* Start below screen */
+    transition: all 0.5s ease; /* transition for smooth hover */
+    
+    /* Random start positions (adjust as needed) */
+    left: 25%;
+    animation-delay: 0s;
+    animation-duration: 10s;
+}
+
+/* --- HOVER EFFECT FOR FIRST GROUP (SQUARES) --- */
+.circles li:hover {
+    /* 1. إيقاف الحركة العمودية: يتم ذلك بتغيير خاصية animation-play-state إلى paused */
+    animation-play-state: paused;
+    /* 2. لتظهر الحركة حول نفسها، سنستخدم خاصية التحويل (transform) مع الإبقاء على الدوران الموجود في الـ Keyframes */
+    /* عند الهوفر، نقوم بتثبيت الموضع الحالي (none) مع الإبقاء على الدوران */
+    transform: none; 
+}
+
+
+.circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-duration: 25s; background: rgba(0, 0, 0, 0.05); }
+.circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-duration: 20s; animation-delay: 2s; background: rgba(0, 0, 0, 0.1); }
+.circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-duration: 15s; animation-delay: 0s; background: rgba(0, 0, 0, 0.03); }
+.circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-duration: 15s; animation-delay: 7s; background: rgba(0, 0, 0, 0.1); }
+.circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-duration: 10s; animation-delay: 3s; background: rgba(0, 0, 0, 0.05); }
+.circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-duration: 30s; animation-delay: 2s; background: rgba(0, 0, 0, 0.03); }
+.circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-duration: 15s; animation-delay: 15s; background: rgba(0, 0, 0, 0.1); }
+.circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-duration: 20s; animation-delay: 2s; background: rgba(0, 0, 0, 0.05); }
+.circles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-duration: 25s; animation-delay: 0s; background: rgba(0, 0, 0, 0.03); }
+
+
+/* 3. المجموعة الثانية: الحركة للأسفل (دوائر) */
+
+.circles-alt li {
+    position: absolute;
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; /* Make them circles */
+    background: rgba(255, 165, 0, 0.1); /* Default (Light) Orangeish Color */
+    animation: animate-reverse 30s linear infinite;
+    top: -150px; /* Start above screen */
+    transition: all 0.5s ease;
+
+    /* Random start positions */
+    left: 15%;
+    animation-delay: 1s;
+    animation-duration: 15s;
+}
+
+.circles-alt li:hover {
+    animation-play-state: paused; /* Stop vertical movement */
+    background: rgba(255, 100, 0, 0.7); /* Change color intensely on hover */
+    transform: scale(1.2); /* Scale up slightly for visual effect */
+}
+
+.circles-alt li:nth-child(2) { left: 5%; width: 40px; height: 40px; animation-duration: 22s; background: rgba(255, 165, 0, 0.05); }
+.circles-alt li:nth-child(3) { left: 85%; width: 20px; height: 20px; animation-duration: 18s; animation-delay: 5s; background: rgba(255, 165, 0, 0.1); }
+.circles-alt li:nth-child(4) { left: 50%; width: 80px; height: 80px; animation-duration: 28s; animation-delay: 10s; background: rgba(255, 165, 0, 0.03); }
+.circles-alt li:nth-child(5) { left: 95%; width: 10px; height: 10px; animation-duration: 12s; animation-delay: 3s; background: rgba(255, 165, 0, 0.1); }
+
+
+/* 4. Dark Mode Adaptation */
+
+.dark .circles li {
+    background: rgba(255, 255, 255, 0.1); 
+}
+.dark .circles li:nth-child(2) { background: rgba(255, 255, 255, 0.05); }
+.dark .circles li:nth-child(4) { background: rgba(255, 255, 255, 0.03); }
+.dark .circles li:nth-child(6) { background: rgba(255, 255, 255, 0.05); }
+.dark .circles li:nth-child(7) { background: rgba(255, 255, 255, 0.03); }
+.dark .circles li:nth-child(10) { background: rgba(255, 255, 255, 0.03); }
+
+/* --- Dark Mode for Circles-Alt --- */
+.dark .circles-alt li {
+    background: rgba(77, 182, 172, 0.1); /* Dark Mode Teal/Cyan color for contrast */
+}
+
+.dark .circles-alt li:hover {
+    background: rgba(0, 200, 180, 0.7); /* Hover color change for Dark Mode */
+}
+
+
+/* 5. Animation Keyframes */
+
+/* 🚀 Animation for SQUARES (Moving UP) */
+@keyframes animate {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0; /* Squares */
+    }
+
+    100% {
+        transform: translateY(-1000px) rotate(720deg); /* Moves up */
+        opacity: 0;
+        border-radius: 50%;
+    }
+}
+
+/* 🚀 Animation for CIRCLES (Moving DOWN) */
+@keyframes animate-reverse {
+    0% {
+        transform: translateY(0) rotate(0deg); /* Start position */
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(1000px) rotate(-720deg); /* Moves down (positive Y) */
+        opacity: 0;
+    }
+}
