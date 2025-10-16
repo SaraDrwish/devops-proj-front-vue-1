@@ -2,7 +2,9 @@
   <header class="p-4 shadow-lg bg-cyan-600 dark:bg-sky-800/40 backdrop-blur-md 
   fixed top-0 left-0 right-0 z-50">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-extrabold text-cyan-400 dark:text-orange-600 transition-colors duration-500">URL Shourtner</h1>
+    <h1 class="text-2xl font-extrabold bg-gradient-to-r from-[#0D324C] to-[#EA580C] dark:from-[#0891B2] dark:to-[#F28C38] bg-clip-text text-transparent transition-all duration-700" >
+       URL Shortener
+    </h1>
       
       <button @click="$emit('toggle-dark-mode')" class="p-2 rounded-full bg-cyan-400 
       dark:bg-sky-700 text-orange-300 dark:text-orange-600 focus:outline-none 
@@ -24,3 +26,13 @@ defineProps({
 });
 defineEmits(['toggle-dark-mode']);
 </script>
+
+
+<style>
+
+.bg-clip-text {
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+</style>

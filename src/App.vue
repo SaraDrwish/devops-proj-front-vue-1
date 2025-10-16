@@ -2,27 +2,21 @@
   <div :class="{ dark: isDark }">
     <div class="relative min-h-screen transition-colors duration-500 overflow-hidden">
 
-      <!-- خلفية التحريك الكاملة -->
       <div class="fixed inset-0 z-0 css-animation-bg">
         <ul class="circles"></ul>
         <ul class="circles-alt"></ul>
         <ul class="circles-3"></ul>
 
-        <!-- تدرجات شفافة خفيفة -->
-        <div class="absolute inset-0 bg-gradient-to-br from-[#0D324C]/80 via-[#0D324C]/60 to-[#EA580C]/50 blur-2xl mix-blend-overlay animate-gradient"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-[#0D324C]/70 via-[#0D324C]/40 to-[#EA580C]/40 blur-3xl opacity-70 animate-gradient"></div>
       </div>
 
-      <!-- الكروسر المخصص -->
       <div id="custom-cursor"></div>
 
-      <!-- محتوى الموقع -->
       <div class="relative z-10 flex flex-col min-h-screen pt-20 pb-20">
         <Header :is-dark="isDark" @toggle-dark-mode="toggleDarkMode" />
-
         <main class="flex-grow flex items-center justify-center p-4">
           <URLShortener />
         </main>
-
         <Footer />
       </div>
 
@@ -59,20 +53,24 @@ onMounted(() => {
     document.documentElement.classList.add('dark');
   }
 
-  // إنشاء العناصر المتحركة
-  const createElements = (selector, count) => {
+  const createElements = (selector, count, minSize, maxSize) => {
     const container = document.querySelector(selector);
     for (let i = 0; i < count; i++) {
       const li = document.createElement('li');
+      const size = Math.random() * (maxSize - minSize) + minSize;
+      li.style.width = `${size}px`;
+      li.style.height = `${size}px`;
       li.style.left = `${Math.random() * 100}%`;
+      li.style.animationDelay = `${Math.random() * 5}s`;
+      li.style.animationDuration = `${15 + Math.random() * 20}s`;
       container.appendChild(li);
     }
   };
-  createElements('.circles', 10);
-  createElements('.circles-alt', 7);
-  createElements('.circles-3', 5);
 
-  // الكروسر المخصص
+  createElements('.circles', 12, 15, 80);
+  createElements('.circles-alt', 8, 20, 100);
+  createElements('.circles-3', 6, 30, 90);
+
   const cursor = document.getElementById('custom-cursor');
   window.addEventListener('mousemove', (e) => {
     cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
@@ -86,7 +84,6 @@ onMounted(() => {
 </script>
 
 <style>
-/* خلفية الموقع */
 .css-animation-bg {
   position: fixed;
   inset: 0;
@@ -94,32 +91,29 @@ onMounted(() => {
   overflow: hidden;
 }
 
-/* تأثير التدرج المتحرك */
 @keyframes gradient-move {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 .animate-gradient {
-  background: linear-gradient(120deg, rgba(13,50,76,0.8),#FDBA74, #32414E ,#EA580C,#0891B2 ,#ffa340);
-  background-size: 200% 200%;
-  animation: gradient-move 15s ease infinite;
-  opacity: 0.6;
+background: linear-gradient(120deg, rgba(13, 50, 76, 0.648),#fdbb74be, #32414ed5 ,#ea5a0c73,#0890b2c1 ,#ffa340c3);
+background-size: 200% 200%;
+animation: gradient-move 18s ease infinite;
 }
 
-/* الكروسر */
 #custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
   width: 25px;
   height: 25px;
-  background: radial-gradient(circle, rgba(234,88,12,0.8), rgba(13,50,76,0.8));
+  background: radial-gradient(circle, rgba(234,88,12,0.7), rgba(13,50,76,0.7));
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
   mix-blend-mode: difference;
-  transition: transform 0.22s ease, width 0.4s, height 0.4s, background 0.4s;
+  transition: transform 0.2s ease, width 0.3s, height 0.3s, background 0.4s;
   z-index: 9999;
 }
 #custom-cursor.hovered {
@@ -128,7 +122,6 @@ onMounted(() => {
   background: radial-gradient(circle, rgba(13,50,76,0.8), rgba(234,88,12,0.8));
 }
 
-/* الخلفيات المتحركة */
 .circles, .circles-alt, .circles-3 {
   position: fixed;
   top: 0;
@@ -141,57 +134,51 @@ onMounted(() => {
   z-index: 1;
 }
 
-/* مربعات شفافة */
 .circles li {
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background: linear-gradient(135deg, rgba(13,50,76,0.1), rgba(234,88,12,0.1));
-  animation: animate-up 20s linear infinite;
-  bottom: -150px;
-  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(13,50,76,0.2), rgba(234,88,12,0.2));
+  animation: animate-up 22s linear infinite;
+  bottom: -100px;
+  border-radius: 6px;
   transition: 0.4s ease;
+  transform-style: preserve-3d;
+  box-shadow: 0 0 15px rgba(13,50,76,0.3);
 }
 .circles li:hover {
   animation-play-state: paused;
-  background: linear-gradient(135deg, rgba(13,50,76,0.7), rgba(234,88,12,0.7));
-  transform: scale(1.3) rotate(45deg);
+  transform: rotateY(20deg) rotateX(20deg) scale(1.2);
+  background: linear-gradient(135deg, rgba(13,50,76,0.7), rgba(234,88,12,0.6));
 }
 
-/* دوائر شفافة */
 .circles-alt li {
   position: absolute;
-  width: 25px;
-  height: 25px;
   border-radius: 50%;
-  background: rgba(234,88,12,0.1);
-  animation: animate-down 25s linear infinite;
-  top: -100px;
-  transition: 0.5s ease;
+  background: rgba(234,88,12,0.2);
+  animation: animate-down 27s linear infinite;
+  top: -150px;
+  transition: 0.8s ease;
+  box-shadow: 0 0 10px rgba(234,88,12,0.4);
 }
 .circles-alt li:hover {
   animation-play-state: paused;
-  background: rgba(234,88,12,0.8);
-  transform: scale(1.2);
+  transform: scale(1.3);
+  background: rgba(234,88,12,0.7);
 }
 
-/* مربعات مائلة */
 .circles-3 li {
   position: absolute;
-  width: 40px;
-  height: 40px;
-  background: rgba(13,50,76,0.1);
   transform: rotate(45deg);
-  animation: animate-diagonal 30s linear infinite;
+  background: rgba(13,50,76,0.2);
+  animation: animate-diagonal 28s linear infinite;
   transition: 0.5s ease;
+  box-shadow: 0 0 15px rgba(13,50,76,0.3);
 }
 .circles-3 li:hover {
   animation-play-state: paused;
-  background: rgba(13,50,76,0.8);
   transform: rotate(45deg) scale(1.2);
+  background: rgba(13,50,76,0.7);
 }
 
-/* أنيميشن */
 @keyframes animate-up {
   0% { transform: translateY(0) rotate(0deg); opacity: 1; }
   100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }

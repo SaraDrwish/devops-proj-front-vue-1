@@ -1,11 +1,11 @@
 <template>
-  <div class="bg-orange-200 dark:bg-gray-900 rounded-lg shadow-md shadow-orange-200 dark:border-4 dark:border-orange-500 
+  <div class=" dark:bg-gray-900 rounded-lg shadow-lg shadow-orange-200 dark:border-4 dark:border-orange-500 
    rounded-xl p-8 w-full max-w-md backdrop-blur-md">
     <h2 class="text-2xl font-bold mb-4 text-cyan-600 dark:text-orange-300 text-center">URL Shortener</h2>
 
     <input type="text" v-model="longUrl" placeholder="https://example.com"
       class="w-full p-3 border border-orange-200 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500 mb-4 bg-gray-50 dark:bg-gray-800 
-      dark:border-gray-600 dark:text-white text-orange-500 dark:placeholder-orange-400  placeholder-sky-300 bg-orange-50 ">
+      dark:border-gray-600 dark:text-white text-orange-500 dark:placeholder-orange-400  placeholder-sky-300 bg-orange-100 ">
 
     <button type="button" @click="shorten"
       class="w-full bg-orange-600 hover:bg-stone-700 text-white font-semibold py-2 px-4 rounded-md transition transform hover:scale-105">
