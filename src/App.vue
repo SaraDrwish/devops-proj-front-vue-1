@@ -97,7 +97,7 @@ onMounted(() => {
   100% { background-position: 0% 50%; }
 }
 .animate-gradient {
-background: linear-gradient(120deg, rgba(13, 50, 76, 0.648),#fdbb74be, #32414ed5 ,#ea5a0c73,#0890b2c1 ,#ffa340c3);
+background: linear-gradient(120deg, rgba(13, 50, 76, 0.3),#fdbb7430, #32414e30 ,#ea5a0c30,#0890b230 ,#ffa34030);
 background-size: 200% 200%;
 animation: gradient-move 18s ease infinite;
 }
