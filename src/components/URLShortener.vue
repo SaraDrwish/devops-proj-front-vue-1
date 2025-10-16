@@ -54,39 +54,4 @@ async function shorten() {
   `;
 }
 
-
-// async function shorten() {
-//   if (!longUrl.value.trim()) {
-//     result.value = `<span class="text-red-600 dark:text-red-400">❌ Error:</span> Please enter a URL first!`;
-//     return;
-//   }
-
-//   result.value = '<span class="animate-pulse text-orange-500">Processing...</span>';
-
-//   try {
-//      const response = await fetch("http://localhost:5000/shorten", {
-//       method: "POST",
-//       headers: { "Content-Type": "application/json" },
-//       body: JSON.stringify({ originalUrl: longUrl.value }),
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("Server Error");
-//     }
-
-//     const data = await response.json();
-//     const short_url = data.shortUrl;
-
-//     result.value = `
-//       <span class="text-green-600 dark:text-green-400">✅ Shortened:</span>
-//       <a href="${short_url}" target="_blank" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 transition">
-//         ${short_url}
-//       </a>
-//     `;
-//   } catch (error) {
-//     result.value = `<span class="text-red-600 dark:text-red-400">❌ Failed:</span> Could not connect to server!`;
-//   } 
-// }
-  
- 
 </script>
